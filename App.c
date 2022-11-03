@@ -58,8 +58,8 @@ void selectionSort(int array[], int size) {
             // To sort in descending order, change > to < in this line.
             // Select the minimum element in each loop.
             if (array[i] < array[min_idx]){
-                swaps++;
                 min_idx = i;
+                swaps++;
             }
         }
         // put min at the correct position
@@ -70,6 +70,8 @@ void selectionSort(int array[], int size) {
 
 void insertionSort(int array[], int size) {
     int comparacoes = 0;
+    int swaps = 0;
+
     for (int step = 1; step < size; step++) {
         int key = array[step];
         int j = step - 1;
@@ -84,8 +86,10 @@ void insertionSort(int array[], int size) {
             --j;
         }
         array[j + 1] = key;
+        swaps++;
+
     }
-    printf("comparacoes::%d", comparacoes);
+    printf("comparacoes::%d || swaps::%d", comparacoes, swaps);
 }
 
 
