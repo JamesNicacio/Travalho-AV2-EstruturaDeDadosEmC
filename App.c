@@ -39,7 +39,6 @@ void bubbleSort(int array[], int size) {
             }
         }
     }
-    printf("BUBBLE SORT\n");
     printf("comparacoes::%d || swaps::%d", comparacoes, swaps);
 }
 
@@ -66,7 +65,6 @@ void selectionSort(int array[], int size) {
         // put min at the correct position
         swap(&array[min_idx], &array[step]);
     }
-    printf("SELECTION SORT\n");
     printf("comparacoes::%d || swaps::%d", comparacoes, swaps);
 }
 
@@ -87,7 +85,6 @@ void insertionSort(int array[], int size) {
         }
         array[j + 1] = key;
     }
-    printf("INSERTION SORT\n");
     printf("comparacoes::%d", comparacoes);
 }
 
@@ -177,7 +174,9 @@ int main(int argc, char const *argv[]){
     printf("\n=====END INSERTION SORT=====\n");
 
 
-    scanf("%s", getchar());
+    printf("Digite qualquer coisa p/ finalizar\n");
+    char end;
+    scanf("%s", end);
 
     
     return 0;
