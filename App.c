@@ -4,6 +4,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <time.h>
+// #include "testBinaryTree.c"
 
 void copyArray(int array[], int arrayCopy[], int size){
     for (int i = 0; i < size; i++) {     
@@ -18,7 +19,7 @@ void printArray(int array[], int size) {
   printf("\n");
 }
 
-// perform the bubble sort
+// BUBBLE SORT
 void bubbleSort(int array[], int size) {
     int comparacoes = 0;
     int swaps = 0;
@@ -30,12 +31,12 @@ void bubbleSort(int array[], int size) {
             // compare two adjacent elements
             // change > to < to sort in descending order
             if (array[i] > array[i + 1]) {
-                swaps++;
                 // swapping occurs if elements
                 // are not in the intended order
                 int temp = array[i];
                 array[i] = array[i + 1];
                 array[i + 1] = temp;
+                swaps++;
             }
         }
     }
@@ -48,6 +49,7 @@ void swap(int *a, int *b) {
   *b = temp;
 }
 
+// SELECTION SORT
 void selectionSort(int array[], int size) {
     int comparacoes = 0;
     int swaps = 0;
@@ -65,13 +67,14 @@ void selectionSort(int array[], int size) {
         // put min at the correct position
         swap(&array[min_idx], &array[step]);
     }
+    // printf("comparacoes::%d || swaps::%d", comparacoes, swaps);
     printf("comparacoes::%d || swaps::%d", comparacoes, swaps);
 }
 
+// INSERTION SORT
 void insertionSort(int array[], int size) {
     int comparacoes = 0;
     int swaps = 0;
-
     for (int step = 1; step < size; step++) {
         int key = array[step];
         int j = step - 1;
@@ -87,7 +90,6 @@ void insertionSort(int array[], int size) {
         }
         array[j + 1] = key;
         swaps++;
-
     }
     printf("comparacoes::%d || swaps::%d", comparacoes, swaps);
 }
@@ -176,6 +178,13 @@ int main(int argc, char const *argv[]){
     insertionSort(vetorInsertion, size);
     // printArray(vetorInsertion, size);
     printf("\n=====END INSERTION SORT=====\n");
+
+
+//===============================================================================================
+//==============================BINARY TREE======================================================
+//===============================================================================================
+
+
 
 
     printf("Digite qualquer coisa p/ finalizar\n");
