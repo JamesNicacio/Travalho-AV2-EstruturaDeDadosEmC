@@ -6,6 +6,53 @@
 #include <time.h>
 // #include "testBinaryTree.c"
 
+
+/* A binary tree node has data,
+pointer to left child and a
+pointer to right child */
+struct Node{
+	int data;
+	struct Node* left, *right;
+};
+
+/* Helper function that allocates a
+new node */
+struct Node* newNode(int data){
+	struct Node* node = (struct Node*)malloc(sizeof(struct Node));
+	node->data = data;
+	node->left = node->right = NULL;
+	return (node);
+}
+
+// Function to insert nodes in level order
+struct Node* insertLevelOrder(int arr[], int i, int n){
+	struct Node *root = NULL;
+	// Base case for recursion
+	if (i < n){
+		root = newNode(arr[i]);
+		
+		// insert left child
+		root->left = insertLevelOrder(arr,
+				2 * i + 1, n);
+
+		// insert right child
+		root->right = insertLevelOrder(arr,
+				2 * i + 2, n);
+	}
+	return root;
+}
+
+// Function to print tree nodes in
+// InOrder fashion
+void inOrder(struct Node* root){
+	if (root != NULL){
+		inOrder(root->left);
+        printf("%d ", root->data);
+		inOrder(root->right);
+	}
+}
+
+
 void copyArray(int array[], int arrayCopy[], int size){
     for (int i = 0; i < size; i++) {     
         arrayCopy[i] = array[i];     
@@ -140,7 +187,7 @@ int main(int argc, char const *argv[]){
     int size = sizeof(vetor) / sizeof(vetor[0]);
 
     // printArray(vetor, size);
-    printf("total iteracoes::%d\n", totalIteracoes);
+    printf("total iteracoes p/ criar vetor::%d\n", totalIteracoes);
 
     int vetorBubble[100];
     copyArray(vetor, vetorBubble, size);
@@ -181,15 +228,17 @@ int main(int argc, char const *argv[]){
 
 
 //===============================================================================================
-//==============================BINARY TREE======================================================
+//============================= BINARY TREE  >> EM ORDEM ========================================
 //===============================================================================================
 
+    
+	struct Node* root = insertLevelOrder(vetor, 0, size);
+	inOrder(root);
 
-
-
-    printf("Digite qualquer coisa p/ finalizar\n");
+    printf("\nDigite qualquer coisa p/ finalizar\n");
     char end;
     scanf("%s", end);
+
 
     
     return 0;
