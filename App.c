@@ -187,7 +187,6 @@ int main(int argc, char const *argv[]){
     int size = sizeof(vetor) / sizeof(vetor[0]);
 
     // printArray(vetor, size);
-    printf("total iteracoes p/ criar vetor::%d\n", totalIteracoes);
 
     int vetorBubble[100];
     copyArray(vetor, vetorBubble, size);
@@ -195,6 +194,16 @@ int main(int argc, char const *argv[]){
     copyArray(vetor, vetorSelection, size);
     int vetorInsertion[100];
     copyArray(vetor, vetorInsertion, size);
+//===============================================================================================
+//============================Vetor Gerado=======================================================
+//===============================================================================================
+
+    printf("\n=====BEGIN RANDOM ARRAY=====\n");
+    printf("total iteracoes p/ criar vetor::%d\n", totalIteracoes);
+    printArray(vetor, size);
+    printf("\n=====END RANDOM ARRAY=====\n");
+
+
 //===============================================================================================
 //===========================BUBBLE SORT=========================================================
 //===============================================================================================
@@ -230,14 +239,15 @@ int main(int argc, char const *argv[]){
 //===============================================================================================
 //============================= BINARY TREE  >> EM ORDEM ========================================
 //===============================================================================================
-
-    
+    printf("\n=====BEGIN BINARY TREE IN ORDER=====\n");
 	struct Node* root = insertLevelOrder(vetor, 0, size);
 	inOrder(root);
+    printf("\n=====END BINARY TREE IN ORDER=====\n");
+    
 
-    printf("\nDigite qualquer coisa p/ finalizar\n");
-    char end;
-    scanf("%s", end);
+    // printf("\nDigite qualquer coisa p/ finalizar\n");
+    // char end;
+    // scanf("%s", end);
 
 
     
