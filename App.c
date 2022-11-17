@@ -43,13 +43,44 @@ struct Node* insertLevelOrder(int arr[], int i, int n){
 }
 
 // Function to print tree nodes in
-// InOrder fashion
+// PreOrder
+void preOrder(struct Node* root){
+	if (root != NULL){
+        printf("%d ", root->data);
+		preOrder(root->left);
+		preOrder(root->right);
+	}
+}
+// InOrder
 void inOrder(struct Node* root){
 	if (root != NULL){
 		inOrder(root->left);
         printf("%d ", root->data);
 		inOrder(root->right);
 	}
+}
+// PostOrder
+void postOrder(struct Node* root){
+	if (root != NULL){
+		postOrder(root->left);
+		postOrder(root->right);
+        printf("%d ", root->data);
+	}
+}
+
+
+void print_subtree(struct Node* n, size_t level) {
+    if(!n) return;
+    level++;
+    print_subtree(n->right, level);
+    for(int i = 0; i < 3 * (level - 1); i++)
+        printf("%c", ' ');
+    printf("%d <\n", n->data);
+    print_subtree(n->left, level);
+}
+
+void print_tree(struct Node* n) {
+    print_subtree(n, 0);
 }
 
 
@@ -87,7 +118,7 @@ void bubbleSort(int array[], int size) {
             }
         }
     }
-    printf("comparacoes::%d || swaps::%d", comparacoes, swaps);
+    printf("comparacoes::%d || swaps::%d\n", comparacoes, swaps);
 }
 
 void swap(int *a, int *b) {
@@ -115,7 +146,7 @@ void selectionSort(int array[], int size) {
         swap(&array[min_idx], &array[step]);
     }
     // printf("comparacoes::%d || swaps::%d", comparacoes, swaps);
-    printf("comparacoes::%d || swaps::%d", comparacoes, swaps);
+    printf("comparacoes::%d || swaps::%d\n", comparacoes, swaps);
 }
 
 // INSERTION SORT
@@ -138,7 +169,7 @@ void insertionSort(int array[], int size) {
         array[j + 1] = key;
         swaps++;
     }
-    printf("comparacoes::%d || swaps::%d", comparacoes, swaps);
+    printf("comparacoes::%d || swaps::%d\n", comparacoes, swaps);
 }
 
 
@@ -210,7 +241,7 @@ int main(int argc, char const *argv[]){
 
     printf("\n=====BEGIN BUBBLE SORT=====\n");
     bubbleSort(vetorBubble, size);
-    // printArray(vetorBubble, size);
+    printArray(vetorBubble, size);
     printf("\n=====END BUBBLE SORT=====\n");
 
     // scanf("%s", getchar());
@@ -223,7 +254,7 @@ int main(int argc, char const *argv[]){
 //===============================================================================================
     printf("\n=====BEGIN SELECTION SORT=====\n");
     selectionSort(vetorSelection, size);
-    // printArray(vetorSelection, size);
+    printArray(vetorSelection, size);
     printf("\n=====END SELECTION SORT=====\n");
 
 
@@ -232,18 +263,45 @@ int main(int argc, char const *argv[]){
 //===============================================================================================
     printf("\n=====BEGIN INSERTION SORT=====\n");
     insertionSort(vetorInsertion, size);
-    // printArray(vetorInsertion, size);
+    printArray(vetorInsertion, size);
     printf("\n=====END INSERTION SORT=====\n");
 
 
 //===============================================================================================
-//============================= BINARY TREE  >> EM ORDEM ========================================
+//=================================== BINARY TREE ===============================================
+//===============================================================================================
+	struct Node* root = insertLevelOrder(vetor, 0, size);
+
+//===============================================================================================
+//============================= BINARY TREE  >> PRÉ-ORDEM =======================================
+//===============================================================================================
+    printf("\n=====BEGIN BINARY TREE PRE ORDER=====\n");
+	preOrder(root);
+    printf("\n=====END BINARY TREE PRE ORDER=====\n");
+
+
+//===============================================================================================
+//============================= BINARY TREE  >> EM-ORDEM ========================================
 //===============================================================================================
     printf("\n=====BEGIN BINARY TREE IN ORDER=====\n");
-	struct Node* root = insertLevelOrder(vetor, 0, size);
 	inOrder(root);
     printf("\n=====END BINARY TREE IN ORDER=====\n");
+
+
+//===============================================================================================
+//============================= BINARY TREE  >> PÓS-ORDEM =======================================
+//===============================================================================================
+    printf("\n=====BEGIN BINARY TREE POST ORDER=====\n");
+	postOrder(root);
+    printf("\n=====END BINARY TREE POST ORDER=====\n");
     
+
+//===============================================================================================
+//================================= PRINT BINARY TREE ===========================================
+//===============================================================================================
+    printf("\n=====BEGIN PRINT BINARY TREE=====\n\n");
+    print_tree(root);
+    printf("\n\n=====END PRINT BINARY TREE=====\n");
 
     // printf("\nDigite qualquer coisa p/ finalizar\n");
     // char end;
